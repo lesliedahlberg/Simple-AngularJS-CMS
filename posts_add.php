@@ -46,9 +46,20 @@
       <span class="help-block" ng-show="errorText">{{ errorText }}</span>
     </div>
 
+    <div id="category-group" class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" class="form-control" name="category" id="category" list="categories" ng-model="formData.category">
+      <datalist id="categories">
+        <option ng-repeat="category in categories" value="{{category.name}}"></option>
+      </datalist>
+      <span class="help-block" ng-show="errorText">{{ errorText }}</span>
+    </div>
+
     <button type="submit" class="btn btn-default">Publish</button>
 
   </form>
+
+  {{ returnData }}
 </section>
 
 

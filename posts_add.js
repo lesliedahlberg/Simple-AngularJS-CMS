@@ -2,6 +2,7 @@ var app = angular.module('posts_add_app', []);
 app.controller('posts_add_control', function($scope, $http) {
 
   $scope.formData = {};
+  getCategories();
 
   $scope.processForm = function() {
     $http({
@@ -11,6 +12,7 @@ app.controller('posts_add_control', function($scope, $http) {
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
     .success(function(data) {
+      $scope.returnData = data;
         if (!data.success) {
           // if not successful, bind errors to error variables
           $scope.errorTitle = data.errors.title;
@@ -24,5 +26,16 @@ app.controller('posts_add_control', function($scope, $http) {
         }
       });
   };
+
+  function getCategories(){
+    $http.get("http://localhost/~lesliedahlberg/slovotisk/api/categories.php")
+    .success(function (response) {
+      if(response.success == true){
+        $scope.categories = response.categories;
+      }else {
+        $scope.error = response;
+      }
+    });
+  }
 
 });
