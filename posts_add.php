@@ -2,37 +2,16 @@
 <? $ng_app = "posts_add_app"; $ng_control = "posts_add_control"; ?>
 <? require $SETTINGS_php_include["header"]; ?>
 
-<section class="container">
+<section class="container" ng-init="edit_id=<?=$_GET["edit_id"]?>">
 
-  <!-- Static navbar -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Project name</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="posts.php">Posts</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a class="active" href="posts_add.php">Add Post</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
+<? require "inc/nav.php" ?>
 
 
-<script src="posts_add.js"></script>
+<script src="posts_add.js">
+</script>
 <h1>Add Post</h1>
-<p>{{ message }}</p>
 
-  <form role="form" ng-submit="processForm()">
+  <form role="form" ng-init="getArticle(edit_id);" ng-submit="processForm()">
 
     <div id="title-group" class="form-group">
       <label for="title">Title:</label>
@@ -58,8 +37,6 @@
     <button type="submit" class="btn btn-default">Publish</button>
 
   </form>
-
-  {{ returnData }}
 </section>
 
 

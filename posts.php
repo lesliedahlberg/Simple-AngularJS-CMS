@@ -4,37 +4,20 @@
 
 <section class="container">
 
-  <!-- Static navbar -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Project name</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a class="active" href="posts.php">Posts</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="posts_add.php">Add Post</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
+<? require "inc/nav.php" ?>
 
 <div class="row">
   <div class="col-md-9">
     <div ng-switch="singlePost">
       <div ng-switch-when="true">
-        <a ng-click="posts()">All Posts</a>
+        <a href="#" ng-click="posts()">All Posts</a>
         <article ng-repeat="article in articles">
           <h2>{{ article.title }}</h2>
           <p>{{ article.date }} | {{ article.author }}</p>
+          <div class="well">
+            <a><span ng-click="postRemove(article.id)" class="glyphicon glyphicon-trash"></span></a>
+            <a href="posts_add.php?edit_id={{article.id}}"><span class="glyphicon glyphicon-pencil"></span>
+          </div>
           <p>{{ article.text }}</p>
         </article>
       </div>

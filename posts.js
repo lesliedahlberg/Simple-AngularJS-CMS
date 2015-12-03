@@ -17,6 +17,18 @@ $scope.singlePostId = 11;
     getArticles();
   }
 
+  $scope.postRemove = function (id) {
+    $http.get("http://localhost/~lesliedahlberg/slovotisk/api/posts_remove.php?id="+id)
+    .success(function (response) {
+      if(response.success == true){
+        $scope.message = response.message;
+      }else {
+        $scope.error = response;
+      }
+    });
+    posts();
+  }
+
   $scope.setCategory = function (category_id, category_name) {
     $scope.category_id = category_id;
     $scope.category_name = category_name;
